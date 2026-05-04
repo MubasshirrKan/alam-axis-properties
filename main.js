@@ -414,3 +414,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// YouTube Looping Logic
+window.onYouTubeIframeAPIReady = function() {
+  new YT.Player("hero-player", {
+    events: {
+      "onStateChange": function(event) {
+        if (event.data === YT.PlayerState.ENDED) {
+          event.target.playVideo();
+        }
+      }
+    }
+  });
+};
