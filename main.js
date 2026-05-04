@@ -415,23 +415,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// YouTube Looping Logic
-window.onYouTubeIframeAPIReady = function() {
-  new YT.Player("hero-player", {
-    events: {
-      "onReady": function(event) {
-        event.target.mute();
-        if (typeof event.target.setPlaybackQuality === 'function') {
-          event.target.setPlaybackQuality('hd1080');
-        }
-        event.target.playVideo();
-      },
-      "onStateChange": function(event) {
-        if (event.data === YT.PlayerState.ENDED) {
-          event.target.seekTo(0);
-          event.target.playVideo();
-        }
+// Deferred Background Video Loading
+window.addEventListener('load', () => {
+  const heroVideo = document.getElementById('hero-player');
+  if (heroVideo && heroVideo.dataset.src) {
+    // Small delay to ensure all critical CSS/animations are painted
+    setTimeout(() => {
+      heroVideo.src = heroVideo.dataset.src;
+      heroVideo.load();
+      
+      // Force play for strict mobile browsers
+      const playPromise = heroVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Autoplay prevented:", error);
+        });
       }
-    }
-  });
-};
+    }, 500);
+  }
+});

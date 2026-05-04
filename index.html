@@ -29,12 +29,12 @@
     <section id="hero" class="relative w-full h-screen overflow-hidden flex items-end justify-center">
       <!-- Background Video -->
       <div class="absolute inset-0 w-full h-full overflow-hidden opacity-60 pointer-events-none hero-bg-video z-0 bg-black">
-        <iframe id="hero-player" class="absolute top-1/2 left-1/2 w-[300vw] h-[300vh] min-w-[100vw] min-h-[100vh] -translate-x-1/2 -translate-y-1/2" 
-          src="https://www.youtube.com/embed/Gdv1DDXzlA8?autoplay=1&mute=1&loop=1&playlist=Gdv1DDXzlA8&controls=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=http://localhost:5173&vq=hd1080" 
-          title="YouTube video player" frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
+        <video id="hero-player" class="absolute inset-0 w-full h-full object-cover scale-[1.2]" 
+          poster="/images/hero.png" 
+          autoplay loop muted playsinline 
+          preload="none" 
+          data-src="/images/background.mp4">
+        </video>
       </div>
       <!-- Huge Typography -->
       <h1 class="hero-text text-[12vw] leading-none font-serif text-center z-10 select-none pb-12 mt-32">
@@ -607,7 +607,6 @@
     </footer>
 
     <script type="module" src="/main.js"></script>
-<script src="https://www.youtube.com/iframe_api"></script>
 
   </body>
 </html>
