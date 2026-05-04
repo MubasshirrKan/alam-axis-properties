@@ -419,6 +419,10 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onYouTubeIframeAPIReady = function() {
   new YT.Player("hero-player", {
     events: {
+      "onReady": function(event) {
+        event.target.mute();
+        event.target.playVideo();
+      },
       "onStateChange": function(event) {
         if (event.data === YT.PlayerState.ENDED) {
           event.target.playVideo();
