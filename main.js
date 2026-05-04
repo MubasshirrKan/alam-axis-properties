@@ -421,10 +421,14 @@ window.onYouTubeIframeAPIReady = function() {
     events: {
       "onReady": function(event) {
         event.target.mute();
+        if (typeof event.target.setPlaybackQuality === 'function') {
+          event.target.setPlaybackQuality('hd1080');
+        }
         event.target.playVideo();
       },
       "onStateChange": function(event) {
         if (event.data === YT.PlayerState.ENDED) {
+          event.target.seekTo(0);
           event.target.playVideo();
         }
       }
